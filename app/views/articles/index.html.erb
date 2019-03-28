@@ -2,7 +2,13 @@
   <h2><%= month.strftime('%Y年%-m月掲載の記事') %></h2>
   <ul>
     <% articles.each do |article| %>
-      <li><%= article.published_at %></li>
+      <li>
+        <article>
+          <h3><%= article.title %></h3>
+          <p><%= article.content.truncate(100) %></p>
+          <div>Estimated reading time: <%= article.estimated_reading_time %> min</div>
+        </article>
+      </li>
     <% end %>    
   </ul>
 <% end %>
