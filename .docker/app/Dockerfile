@@ -22,8 +22,8 @@ RUN curl -sSL https://deb.nodesource.com/setup_10.x | bash - \
 
 WORKDIR /active_decorator_hash_sample
 
-# COPY Gemfile  .
-# COPY Gemfile.lock .
-# RUN bundle install
+COPY Gemfile  .
+COPY Gemfile.lock .
+RUN bundle install
 
-# COPY . .
+COPY . .
