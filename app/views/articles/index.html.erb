@@ -1,0 +1,8 @@
+<% @articles.each do |month, articles| %>
+  <h2><%= month.strftime('%Y年%-m月掲載の記事') %></h2>
+  <ul>
+    <% articles.each do |article| %>
+      <li><%= article.published_at %></li>
+    <% end %>    
+  </ul>
+<% end %>
