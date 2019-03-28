@@ -9,10 +9,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ActiveRecord::Base.transaction do
+  Article.destroy_all
+  ActiveRecord::Base.connection.execute('ALTER TABLE articles AUTO_INCREMENT=1')
   50.times do
     Article.create(
       title: FFaker::Book.title,
-      content: FFaker::LoremJA.paragraphs(10).join("\n"),
+      content: FFaker::LoremJA.paragraphs([*10..50].sample).join("\n"),
       published_at: [*1..12].sample.months.after
     )
   end
