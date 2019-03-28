@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./.docker/app/Dockerfile
+    environment:
+      - LANG=C.UTF-8
+    ports:
+      - "${EXTERNAL_RAILS_PORT:-3000}:3000"
+    tty: true
+    volumes:
+      - .:/active_decorator_hash_sample:cached
+      - bundle:/usr/local/bundle
+      - mysqld_sockets:/var/run/mysqld
+    working_dir: /active_decorator_hash_sample
+
+  db:
+    image: mysql:5.7.24
+    command: --character-set-server=utf8mb4
+    environment:
+      - LANG=C.UTF-8
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "${EXTERNAL_MYSQL_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysqld_sockets:/var/run/mysqld
+
+volumes:
+  bundle:
+  mysql_data:
+  mysqld_sockets:
