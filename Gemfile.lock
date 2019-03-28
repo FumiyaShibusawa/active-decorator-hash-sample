@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/FumiyaShibusawa/active_decorator.git
-  revision: c3ca9c25eac9c1a1238615c6edd95ed017e87360
+  revision: 71437af2292b5692c50219c38e82e0b5668b5896
+  branch: decorate-objects-in-hash
   specs:
     active_decorator (1.1.1)
 
