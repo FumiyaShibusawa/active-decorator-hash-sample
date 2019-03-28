@@ -7,3 +7,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+ActiveRecord::Base.transaction do
+  50.times do
+    Article.create(
+      title: FFaker::Book.title,
+      content: FFaker::LoremJA.paragraphs(10).join("\n"),
+      published_at: [*1..12].sample.months.after
+    )
+  end
+end
